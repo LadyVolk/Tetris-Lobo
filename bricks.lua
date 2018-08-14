@@ -1,5 +1,8 @@
+
 local Colors = require "colors"
-local square = {
+--defining pieces
+local bricks = {}
+bricks.square = {
   coord = {
     {0, 0},
     {0, 1},
@@ -8,7 +11,7 @@ local square = {
   },
   cor = Colors.rgb(206, 66, 244)
 }
-local line = {
+bricks.line = {
   coord = {
     {0, 0},
     {1, 0},
@@ -17,7 +20,7 @@ local line = {
   },
   cor = Colors.rgb(14, 23, 25)
 }
-local s = {
+bricks.s = {
   coord = {
     {0, 1},
     {0, 2},
@@ -26,7 +29,7 @@ local s = {
   },
   cor = Colors.rgb(2, 221, 20)
 }
-local z = {
+bricks.z = {
   coord = {
     {0, 0},
     {0, 1},
@@ -35,7 +38,7 @@ local z = {
   },
   cor = Colors.rgb(224, 176, 4)
 }
-local l = {
+bricks.l = {
   coord = {
     {0, 0},
     {1, 0},
@@ -44,7 +47,7 @@ local l = {
   },
   cor = Colors.rgb(224, 4, 4)
 }
-local j = {
+bricks.j = {
   coord = {
     {0, 1},
     {1, 1},
@@ -53,7 +56,7 @@ local j = {
   },
   cor = Colors.rgb(244, 244, 244)
 }
-local t = {
+bricks.t = {
   coord = {
     {0, 0},
     {0, 1},
@@ -62,3 +65,13 @@ local t = {
   },
   cor = Colors.rgb(110, 124, 193)
 }
+--defining function
+local func = {}
+
+function func.draw_brick(type, x, y)
+  love.graphics.setColor(Colors.unpack(bricks[type].cor))
+  for i, pos in ipairs (bricks[type].coord) do
+    love.graphics.rectangle("fill", x+(pos[2]*TILE_W), y+(pos[1]*TILE_H), TILE_W, TILE_H)
+  end
+end
+return func
